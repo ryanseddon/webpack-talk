@@ -1,0 +1,181 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Webpack
+
+    // build:css styles/styles.css
+    //- Check out 'src/bower_components/prism/themes/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-tomorrow.css')
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+    // endbuild
+
+  body
+
+    article
+
+      section
+        h1
+          a(href="http://webpack.github.io/docs/") Webpack
+
+      section
+        h2 Module Bundler
+
+      section
+        h2 Think Browserify with more
+
+      section
+        h2
+          s Browserify vs Webpack
+
+      section
+        h2 Works with almost any module system
+        h3 AMD, CJS, UMD, Component, Latest Hipster Module System (LHMS)
+
+      section
+        h2 Can require in CSS, Images, Fonts etc.
+
+      section
+        h2 Uses CJS syntax to load modules
+        pre
+          code.language-javascript.
+            var angular = require('angular');
+
+            angular.controller('foo', function() {
+
+            });
+
+      section
+        h2 Loaders
+        h3 Like browserify transforms
+
+      section
+        h2 Think
+        hr
+        ul
+          li CSS preprocessors
+          li ES6 Module Transpilers
+          li Convert assets to base64
+
+      section
+        h2 Pre and post hooks
+
+      section
+        h2 Even has a transform loader
+
+      section
+        h2 Loader syntax
+        pre
+          code.language-javascript.
+            var _ = require('lodash');
+            // This will load in image as base64
+            require('url!./image.png');
+            // CSS is loaded in as text an then injected into head
+            // Multiple loaders can be chained together
+            require('style!css!./styles.css');
+            // If a js file doesn't user a module system we can still
+            // require it in and assign it to a local variable
+            require('imports?foo=lib!lib.js');
+
+            // foo is our reference to somelibrary
+            foo.say();
+
+      section
+        h2 Config file
+        h3 Having loaders inline not a good idea
+        pre
+          code.language-javascript.
+            {
+              module: {
+                loaders: [
+                  { test: /\.png$/, loader: 'url' },
+                  { test: /\.js$/, loader: 'es6-loader' }
+                ]
+              }
+            }
+
+      section
+        h2 Resolve Modules
+        pre
+          code.language-javascript.
+            resolve: {
+              moduleDirectories: ['node_modules', 'bower_components']
+            }
+
+      section
+        h2
+          | Avoid
+          br
+          | ../../../../component.js
+        pre
+          code.language-javascript.
+            resolve: {
+              alias: {
+                component: 'absolute/path/to/component'
+              }
+            }
+
+            // No need to jump around paths anymore
+            // be wary this will look in moduledirectories first
+            var thing = require('component');
+
+      section
+        h2 Integrates with your favourite build system
+        h3 Gulp, Grunt, Make etc
+
+      section
+        h2 Smarter build output
+        hr
+        ul
+          li Can segment build into even chunks
+          li Force large files to load on demand
+          li Segment based on routes
+          li Can extract common modules
+
+      section
+        h2 Incremental builds
+        h3 Watch task will only rebuild touched files
+
+      section
+        h2 Warts
+        h3 Loader syntax is ugly
+        pre
+          code.language-javascript.
+            {
+              test: /\.scss$/,
+              loader: [
+                'css',
+                '!autoprefixer-loader',
+                '?browsers=last 2 versions, > 1%, Firefox ESR, ie >= 9',
+                '!sass-loader?includePaths[]=src/styles/components/'
+              ].join('')
+            }
+
+      section
+        h2 Documentation is rubbish
+
+      section
+        h2 Webpack is awesome
+        h3 Has the answer for almost any issue
+
+      section
+        h2 Thanks
+        ul.pissoff
+          li
+            a(href="http://webpack.github.io") webpack.github.io
+          li
+            a(href="http://ryanseddon.github.io/webpack-talk") ryanseddon.github.io/webpack-talk
+
+    // build:js scripts/scripts.js
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-keys/dist/bespoke-keys.min.js')
+    script(src='bower_components/bespoke-touch/dist/bespoke-touch.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-scale/dist/bespoke-scale.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/bespoke-progress/dist/bespoke-progress.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='scripts/main.js')
+    // endbuild
