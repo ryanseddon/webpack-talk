@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Webpack</title>
+    <link rel="stylesheet" href="styles/styles.css"/>
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1><a href="http://webpack.github.io/docs/">Webpack</a></h1>
+      </section>
+      <section>
+        <h2>Module Bundler</h2>
+      </section>
+      <section>
+        <h2>Think Browserify with more</h2>
+      </section>
+      <section data-bespoke-state="wvb">
+        <h2>
+          <s>Webpack vs Browserify</s>
+        </h2>
+      </section>
+      <section>
+        <h2>Works with almost any module system</h2>
+        <h3>AMD, CJS, UMD, Component, Latest Hipster Module System (LHMS)</h3>
+      </section>
+      <section>
+        <h2>Can require in CSS, Images, Fonts etc.</h2>
+      </section>
+      <section>
+        <h2>Uses CJS syntax to load modules</h2>
+        <pre><code class="language-javascript">var angular = require('angular');
+
+angular.controller('foo', function() {
+
+});
+</code></pre>
+      </section>
+      <section>
+        <h2>Loaders</h2>
+        <h3>Like browserify transforms</h3>
+      </section>
+      <section>
+        <h2>Think</h2>
+        <hr>
+        <ul class="pissoff">
+          <li>CSS preprocessors</li>
+          <li>ES6 Module Transpilers</li>
+          <li>Convert assets to base64</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Pre and post hooks</h2>
+      </section>
+      <section>
+        <h2>Even has a transform loader</h2>
+      </section>
+      <section>
+        <h2>Loader syntax</h2>
+        <pre><code class="language-javascript">var _ = require('lodash');
+// This will load in image as base64
+require('url!./image.png');
+// CSS is loaded in as text an then injected into head
+// Multiple loaders can be chained together
+require('style!css!./styles.css');
+// If a js file doesn't user a module system we can still
+// require it in and assign it to a local variable
+require('imports?foo=lib!lib.js');
+
+// foo is our reference to somelibrary
+foo.say();
+</code></pre>
+      </section>
+      <section>
+        <h2>Config file</h2>
+        <h3>Having loaders inline not a good idea</h3>
+        <pre><code class="language-javascript">{
+  module: {
+    loaders: [
+      { test: /\.png$/, loader: 'url' },
+      { test: /\.js$/, loader: 'es6-loader' }
+    ]
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Resolve Modules</h2>
+        <pre><code class="language-javascript">resolve: {
+  moduleDirectories: ['node_modules', 'bower_components']
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Avoid<br>../../../../component.js</h2>
+        <pre><code class="language-javascript">resolve: {
+  alias: {
+    component: 'absolute/path/to/component'
+  }
+}
+
+// No need to jump around paths anymore
+// be wary this will look in moduledirectories first
+var thing = require('component');
+</code></pre>
+      </section>
+      <section>
+        <h2>Integrates with your favourite build system</h2>
+        <h3>Gulp, Grunt, Make etc</h3>
+      </section>
+      <section>
+        <h2>Smarter build output</h2>
+        <hr>
+        <ul class="pissoff">
+          <li>Can segment build into even chunks</li>
+          <li>Force large files to load on demand</li>
+          <li>Segment based on routes</li>
+          <li>Can extract common modules</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Incremental builds</h2>
+        <h3>Watch task will only rebuild touched files</h3>
+      </section>
+      <section>
+        <h2>Warts</h2>
+        <h3>Loader syntax is ugly</h3>
+        <pre><code class="language-javascript">{
+  test: /\.scss$/,
+  loader: [
+    'css',
+    '!autoprefixer-loader',
+    '?browsers=last 2 versions, > 1%, Firefox ESR, ie >= 9',
+    '!sass-loader?includePaths[]=src/styles/components/'
+  ].join('')
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Documentation is rubbish</h2>
+      </section>
+      <section>
+        <h2>Webpack is awesome</h2>
+        <h3>Has the answer for almost any issue</h3>
+      </section>
+      <section>
+        <h2>Thanks</h2>
+        <ul class="pissoff">
+          <li><a href="http://webpack.github.io">webpack.github.io</a></li>
+          <li><a href="http://ryanseddon.github.io/webpack-talk">ryanseddon.github.io/webpack-talk</a></li>
+        </ul>
+      </section>
+    </article>
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html>
